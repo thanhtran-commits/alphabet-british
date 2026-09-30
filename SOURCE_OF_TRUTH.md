@@ -7,13 +7,13 @@
 - Publishing source: `main` branch, repository root, through GitHub Pages.
 - Entry point: `index.html`, copied without content changes from the supplied `alphabet-british.html` on 2026-09-30.
 - Original and published `index.html` SHA-256: `aa4427f00bb6f792027d0cda08cd3572b94ae7bf47138225255a077d796f6e4f`.
-- Runtime: static HTML, CSS and JavaScript. Fonts load from Google Fonts. Word lists are saved in each visitor's browser storage.
+- Runtime: static HTML, CSS and JavaScript. Fonts load from Google Fonts. Word lists are saved in each visitor’s browser storage.
 
 ## Revision log
 
 | Date | Change | Previous state | Verification |
 | --- | --- | --- | --- |
-| 2026-09-30 | Publish the supplied HTML as `index.html` and enable GitHub Pages. | Local HTML file without a shareable site URL. | GitHub repository commit `05471a2`; Pages deployment and live URL to be checked. |
+| 2026-09-30 | Publish the supplied HTML as `index.html` and enable GitHub Pages. | Local HTML file without a shareable site URL. | Commit `05471a2`; the public URL loaded the page and clicking B changed the displayed letter to B. |
 
 ## Future updates
 
