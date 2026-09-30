@@ -1,0 +1,446 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>British English Alphabet</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;700;800&family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --sky:#E4F1F9; --face:#FFFFFF; --ink:#1E2A45; --muted:#5A6782;
+  --red:#D6453A; --blue:#2C6DB3; --green:#2F8F52; --gold:#D99A16;
+  --edge:rgba(30,42,69,.18); --panel:#FFFFFF; --hl:#FFE59A;
+  box-sizing:border-box;
+  padding-top:env(safe-area-inset-top,0px);
+  padding-bottom:env(safe-area-inset-bottom,0px);
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    --sky:#14203A; --face:#1F2D4D; --ink:#EEF3FB; --muted:#A7B3CC;
+    --red:#FF7A6E; --blue:#7FB2F0; --green:#6FD196; --gold:#F5C451;
+    --edge:rgba(0,0,0,.45); --panel:#1A2743; --hl:#5B4A12;
+  }
+}
+:root[data-theme="dark"]{
+  --sky:#14203A; --face:#1F2D4D; --ink:#EEF3FB; --muted:#A7B3CC;
+  --red:#FF7A6E; --blue:#7FB2F0; --green:#6FD196; --gold:#F5C451;
+  --edge:rgba(0,0,0,.45); --panel:#1A2743; --hl:#5B4A12;
+}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+*,*::before,*::after{box-sizing:inherit}
+body{margin:0;background:var(--sky);color:var(--ink);font-family:"Nunito",system-ui,sans-serif;line-height:1.5}
+.wrap{max-width:1100px;margin:0 auto;padding:1.25rem 1rem 3rem}
+h1{font-family:"Baloo 2",system-ui,sans-serif;font-weight:800;font-size:clamp(1.8rem,4vw,2.6rem);line-height:1.1;margin:.25rem 0 .25rem}
+.sub{color:var(--muted);margin:0 0 1.25rem;max-width:62ch}
+
+/* stage */
+.stage{display:grid;grid-template-columns:auto 1fr;gap:1.5rem;align-items:center;background:var(--panel);border-radius:22px;padding:1.25rem 1.5rem;border-bottom:6px solid var(--edge);margin-bottom:1.25rem}
+.big{font-family:"Baloo 2",sans-serif;font-weight:800;font-size:clamp(5rem,14vw,9rem);line-height:1;min-width:1.4em;text-align:center;color:var(--blue)}
+.big small{font-size:.55em;margin-left:.08em;opacity:.8}
+.info .ipa{font-size:clamp(1.4rem,3.5vw,2rem);font-weight:700}
+.info .say{color:var(--muted);font-size:1.05rem}
+.info .hint{color:var(--muted);font-size:.9rem;margin-top:.4rem}
+
+/* controls */
+.controls{display:flex;flex-wrap:wrap;gap:.75rem 1.25rem;align-items:end;margin-bottom:1.25rem}
+.ctl{display:flex;flex-direction:column;gap:.2rem;font-size:.9rem;font-weight:600;color:var(--muted)}
+.ctl output{color:var(--ink)}
+select,input[type=range]{font:inherit}
+select{padding:.45rem .6rem;border-radius:10px;border:2px solid var(--edge);background:var(--face);color:var(--ink);max-width:260px}
+input[type=range]{width:150px;accent-color:var(--blue)}
+.btn{font-family:"Baloo 2",sans-serif;font-weight:700;font-size:1.1rem;border:0;border-radius:14px;padding:.55rem 1.2rem;cursor:pointer;color:#fff;background:var(--green);border-bottom:4px solid rgba(0,0,0,.25)}
+.btn.stop{background:var(--red)}
+.btn.ghost{background:var(--face);color:var(--ink);border:2px solid var(--edge);border-bottom-width:4px}
+.btn:disabled{opacity:.5;cursor:not-allowed}
+.btn:active{transform:translateY(2px);border-bottom-width:2px}
+.btn:focus-visible,.block:focus-visible,select:focus-visible,input:focus-visible{outline:3px solid var(--gold);outline-offset:3px}
+
+.warn{display:none;background:var(--hl);color:var(--ink);padding:.7rem 1rem;border-radius:12px;margin-bottom:1rem;font-size:.95rem}
+.warn.show{display:block}
+
+/* blocks */
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(92px,1fr));gap:.8rem}
+.block{appearance:none;border:0;cursor:pointer;background:var(--face);border-radius:16px;padding:.5rem .25rem .4rem;border-bottom:6px solid var(--edge);display:flex;flex-direction:column;align-items:center;color:var(--c);transition:transform .12s}
+.block:active{transform:translateY(3px)}
+.block .L{font-family:"Baloo 2",sans-serif;font-weight:800;font-size:2.6rem;line-height:1}
+.block .L small{font-size:.6em;opacity:.8}
+.block .p{font-size:.85rem;color:var(--muted);font-weight:600}
+.block.on{background:var(--hl);transform:translateY(-4px)}
+.block:nth-child(4n+1){--c:var(--red)}
+.block:nth-child(4n+2){--c:var(--blue)}
+.block:nth-child(4n+3){--c:var(--green)}
+.block:nth-child(4n+4){--c:var(--gold)}
+
+/* speller */
+.speller{background:var(--panel);border-radius:22px;padding:1.1rem 1.5rem 1.25rem;border-bottom:6px solid var(--edge);margin-bottom:1.25rem}
+.speller h2{font-family:"Baloo 2",sans-serif;font-weight:800;font-size:1.5rem;margin:0 0 .6rem}
+.row{display:flex;flex-wrap:wrap;gap:.6rem;align-items:center}
+.speller input[type=text],.speller textarea{font:inherit;font-size:1.1rem;padding:.55rem .8rem;border-radius:12px;border:2px solid var(--edge);background:var(--face);color:var(--ink)}
+.speller input[type=text]{flex:1 1 220px;min-width:0}
+.speller textarea{width:100%;min-height:90px;resize:vertical;margin:.5rem 0}
+.speller input:focus-visible,.speller textarea:focus-visible,.chip:focus-visible,summary:focus-visible{outline:3px solid var(--gold);outline-offset:3px}
+.tiles{display:flex;flex-wrap:wrap;gap:.45rem;min-height:4.2rem;margin:.9rem 0 .4rem;align-items:center}
+.tile{font-family:"Baloo 2",sans-serif;font-weight:800;font-size:2.2rem;line-height:1;min-width:2.9rem;padding:.35rem .5rem .2rem;text-align:center;border-radius:12px;background:var(--face);border:2px solid var(--edge);border-bottom-width:5px;color:var(--blue)}
+.tile.space{min-width:1.2rem;background:none;border:0}
+.tile.on{background:var(--hl);transform:translateY(-4px)}
+.tiles.whole .tile:not(.space){background:var(--hl)}
+.empty{color:var(--muted);font-size:.95rem}
+details{margin-top:.6rem}
+summary{cursor:pointer;font-weight:700;color:var(--muted)}
+.chips{display:flex;flex-wrap:wrap;gap:.45rem;margin-top:.7rem}
+.chip{appearance:none;font:inherit;font-weight:700;cursor:pointer;padding:.3rem .8rem;border-radius:999px;border:2px solid var(--edge);background:var(--face);color:var(--ink)}
+.chip.on{background:var(--hl)}
+@media (prefers-reduced-motion:reduce){.tile.on{transform:none}}
+
+.foot{margin-top:1.5rem;color:var(--muted);font-size:.88rem;max-width:70ch}
+@media (max-width:560px){
+  .stage{grid-template-columns:1fr;text-align:center;gap:.5rem}
+  .grid{grid-template-columns:repeat(auto-fill,minmax(72px,1fr))}
+  .block .L{font-size:2.1rem}
+}
+@media (prefers-reduced-motion:reduce){.block,.btn{transition:none}.block.on{transform:none}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>The English alphabet</h1>
+  <p class="sub">Bấm vào từng chữ để nghe tên chữ cái bằng giọng Anh–Anh, hoặc phát cả bảng. Có thể gõ phím chữ cái trên bàn phím.</p>
+
+  <div class="warn" id="warn"></div>
+
+  <section class="stage" aria-live="polite">
+    <div class="big" id="big">A<small>a</small></div>
+    <div class="info">
+      <div class="ipa" id="ipa">/eɪ/</div>
+      <div class="say" id="say">như trong “day”</div>
+      <div class="hint" id="hint">Chọn một chữ để bắt đầu.</div>
+    </div>
+  </section>
+
+  <div class="controls">
+    <label class="ctl">Giọng đọc
+      <select id="voice"></select>
+    </label>
+    <label class="ctl">Tốc độ: <output id="rateOut">0.6×</output>
+      <input type="range" id="rate" min="0.4" max="1" step="0.05" value="0.6">
+    </label>
+    <label class="ctl">Nghỉ giữa các chữ: <output id="gapOut">2 giây</output>
+      <input type="range" id="gap" min="0.5" max="5" step="0.5" value="2">
+    </label>
+    <label class="ctl">Lặp mỗi chữ
+      <select id="reps"><option value="1">1 lần</option><option value="2">2 lần</option><option value="3">3 lần</option></select>
+    </label>
+    <button class="btn" id="play">Phát cả bảng</button>
+    <button class="btn stop" id="stop">Dừng</button>
+    <button class="btn ghost" id="caseBtn">Chỉ chữ hoa</button>
+  </div>
+
+  <section class="speller">
+    <h2>Spell a word</h2>
+    <div class="row">
+      <input type="text" id="word" aria-label="Từ cần đánh vần" placeholder="Gõ một từ, ví dụ: apple" maxlength="40" autocomplete="off" spellcheck="false">
+      <button class="btn" id="spellBtn">Spell</button>
+    </div>
+    <div class="tiles" id="tiles" aria-live="polite"><span class="empty">Máy sẽ đọc cả từ, đánh vần từng chữ, rồi đọc lại cả từ.</span></div>
+
+    <div class="chips" id="chips"></div>
+    <details id="listBox">
+      <summary>Danh sách từ của bạn</summary>
+      <textarea id="listInput" placeholder="Dán danh sách từ: mỗi dòng một từ, hoặc cách nhau bằng dấu phẩy"></textarea>
+      <div class="row">
+        <button class="btn ghost" id="saveList">Cập nhật danh sách</button>
+        <button class="btn" id="spellAll">Đánh vần cả danh sách</button>
+        <button class="btn ghost" id="clearList">Xóa danh sách</button>
+      </div>
+    </details>
+  </section>
+
+  <div class="grid" id="grid"></div>
+
+  <p class="foot">Giọng đọc lấy từ trình duyệt/máy của bạn. Giọng tự nhiên nhất thường là “Google UK English Female/Male” (Chrome), “Microsoft Sonia/Libby/Ryan Online” (Edge), hoặc “Daniel/Serena/Kate” (Mac, iPhone). Lưu ý kiểu Anh: H đọc /eɪtʃ/ (aitch), Z đọc /zed/, R đọc /ɑː/ không uốn lưỡi.</p>
+</div>
+
+<script>
+// [letter, IPA (British), Vietnamese hint, text sent to the speech engine]
+const LETTERS = [
+  ["A","/eɪ/","như trong “day”","A"],
+  ["B","/biː/","","B"],
+  ["C","/siː/","","C"],
+  ["D","/diː/","","D"],
+  ["E","/iː/","","E"],
+  ["F","/ef/","","F"],
+  ["G","/dʒiː/","","G"],
+  ["H","/eɪtʃ/","kiểu Anh: “aitch”, không phải “haitch”","aitch"],
+  ["I","/aɪ/","như trong “my”","I"],
+  ["J","/dʒeɪ/","","J"],
+  ["K","/keɪ/","","K"],
+  ["L","/el/","","L"],
+  ["M","/em/","","M"],
+  ["N","/en/","","N"],
+  ["O","/əʊ/","kiểu Anh: /əʊ/, không phải /oʊ/","O"],
+  ["P","/piː/","","P"],
+  ["Q","/kjuː/","","Q"],
+  ["R","/ɑː/","kiểu Anh: không uốn lưỡi","R"],
+  ["S","/es/","","S"],
+  ["T","/tiː/","","T"],
+  ["U","/juː/","","U"],
+  ["V","/viː/","","V"],
+  ["W","/ˈdʌb.əl.juː/","“double-u”","W"],
+  ["X","/eks/","","X"],
+  ["Y","/waɪ/","","Y"],
+  ["Z","/zed/","kiểu Anh: “zed”, không phải “zee”","zed"]
+];
+
+const $ = id => document.getElementById(id);
+const synth = window.speechSynthesis;
+const grid = $("grid");
+let voices = [], showLower = true, playing = false, timer = null, current = 0;
+
+// build blocks
+LETTERS.forEach(([L,ipa],i)=>{
+  const b = document.createElement("button");
+  b.className = "block"; b.type = "button";
+  b.setAttribute("aria-label", "Letter " + L);
+  b.innerHTML = `<span class="L">${L}<small>${L.toLowerCase()}</small></span><span class="p">${ipa}</span>`;
+  b.addEventListener("click",()=>{ stopAll(); speakIndex(i); });
+  grid.appendChild(b);
+});
+const blocks = [...grid.children];
+
+function show(i){
+  const [L,ipa,note] = LETTERS[i];
+  $("big").innerHTML = showLower ? `${L}<small>${L.toLowerCase()}</small>` : L;
+  $("ipa").textContent = ipa;
+  $("say").textContent = note || "";
+  $("hint").textContent = `Chữ ${i+1}/26`;
+  blocks.forEach((b,k)=>b.classList.toggle("on",k===i));
+}
+
+function utter(text, onend){
+  if(!synth){ onend && onend(); return; }
+  const u = new SpeechSynthesisUtterance(text);
+  const v = voices.find(v=>v.name===$("voice").value);
+  if(v){ u.voice = v; u.lang = v.lang; } else { u.lang = "en-GB"; }
+  u.rate = parseFloat($("rate").value);
+  u.pitch = 1;
+  u.onend = onend; u.onerror = onend;
+  synth.speak(u);
+}
+
+function speakIndex(i, done){
+  show(i);
+  const reps = parseInt($("reps").value,10);
+  let n = 0;
+  const once = ()=>{
+    n++;
+    utter(LETTERS[i][3], ()=>{
+      if(n<reps){ timer = setTimeout(once, 900); }
+      else { done && done(); }
+    });
+  };
+  synth && synth.cancel();
+  once();
+}
+
+function playFrom(i){
+  if(!playing) return;
+  current = i;
+  speakIndex(i, ()=>{
+    if(!playing) return;
+    if(i+1 < LETTERS.length){
+      timer = setTimeout(()=>playFrom(i+1), parseFloat($("gap").value)*1000);
+    } else { stopAll(); $("hint").textContent = "Đã đọc hết 26 chữ."; }
+  });
+}
+
+function stopAll(){
+  playing = false; clearTimeout(timer);
+  runId++;
+  synth && synth.cancel();
+  $("play").textContent = "Phát cả bảng";
+  $("spellBtn").textContent = "Spell";
+  $("spellAll").textContent = "Đánh vần cả danh sách";
+}
+
+/* ---------- Spell a word ---------- */
+let runId = 0;
+const wait = (ms, id, fn) => { timer = setTimeout(()=>{ if(id===runId) fn(); }, ms); };
+const letterIdx = ch => LETTERS.findIndex(l=>l[0]===ch.toUpperCase());
+
+function renderTiles(word){
+  const t = $("tiles");
+  t.classList.remove("whole");
+  t.innerHTML = "";
+  [...word].forEach(ch=>{
+    const s = document.createElement("span");
+    s.className = "tile" + (ch===" " ? " space" : "");
+    s.textContent = ch===" " ? "" : ch;
+    t.appendChild(s);
+  });
+}
+
+// word -> letter by letter -> word
+function spellWord(word, id, done){
+  const chars = [...word];
+  const tiles = [...$("tiles").children];
+  const gap = parseFloat($("gap").value)*1000;
+  const letterGap = Math.max(400, gap*0.5);
+  const whole = on => { $("tiles").classList.toggle("whole", on); tiles.forEach(x=>x.classList.remove("on")); };
+
+  whole(true);
+  $("hint").textContent = `Đang đọc: ${word}`;
+  utter(word, ()=>{ if(id!==runId) return;
+    wait(gap, id, ()=>{ whole(false); step(0); });
+  });
+
+  function step(i){
+    if(i>=chars.length){
+      wait(gap, id, ()=>{
+        whole(true); blocks.forEach(b=>b.classList.remove("on"));
+        $("hint").textContent = `Đọc lại: ${word}`;
+        utter(word, ()=>{ if(id===runId) done && done(); });
+      });
+      return;
+    }
+    const k = letterIdx(chars[i]);
+    if(k<0){ step(i+1); return; }            // spaces, hyphens: skip silently
+    tiles.forEach((x,j)=>x.classList.toggle("on", j===i));
+    show(k); current = k;
+    const total = chars.filter(c=>letterIdx(c)>=0).length;
+    const pos = chars.slice(0,i+1).filter(c=>letterIdx(c)>=0).length;
+    $("hint").textContent = `Chữ ${pos}/${total} trong “${word}”`;
+    utter(LETTERS[k][3], ()=>{ if(id!==runId) return;
+      wait(letterGap, id, ()=>step(i+1));
+    });
+  }
+}
+
+function cleanWord(w){ return w.replace(/\s+/g," ").trim().slice(0,40); }
+
+function startSpell(word){
+  word = cleanWord(word);
+  if(!word || ![...word].some(c=>letterIdx(c)>=0)) return;
+  stopAll();
+  const id = ++runId;
+  $("word").value = word;
+  $("spellBtn").textContent = "Đang đánh vần…";
+  markChip(word);
+  renderTiles(word);
+  spellWord(word, id, ()=>{ $("spellBtn").textContent = "Spell"; });
+}
+
+function spellList(){
+  if(!wordList.length) return;
+  stopAll();
+  const id = ++runId;
+  $("spellAll").textContent = "Đang đánh vần…";
+  const gap = parseFloat($("gap").value)*1000;
+  const go = n => {
+    if(id!==runId) return;
+    if(n>=wordList.length){ $("spellAll").textContent = "Đánh vần cả danh sách"; $("hint").textContent = "Đã đánh vần hết danh sách."; return; }
+    const w = wordList[n];
+    $("word").value = w; markChip(w); renderTiles(w);
+    spellWord(w, id, ()=>wait(gap*1.5, id, ()=>go(n+1)));
+  };
+  go(0);
+}
+
+/* word list (saved in this browser only) */
+let wordList = [];
+function parseList(text){
+  const seen = new Set();
+  return text.split(/[\n,;]+/).map(cleanWord)
+    .filter(w=>w && [...w].some(c=>letterIdx(c)>=0))
+    .filter(w=>{ const k=w.toLowerCase(); if(seen.has(k)) return false; seen.add(k); return true; });
+}
+function renderChips(){
+  const c = $("chips"); c.innerHTML = "";
+  wordList.forEach(w=>{
+    const b = document.createElement("button");
+    b.className = "chip"; b.type = "button"; b.textContent = w; b.dataset.w = w;
+    b.addEventListener("click",()=>startSpell(w));
+    c.appendChild(b);
+  });
+  $("spellAll").disabled = !wordList.length;
+}
+function markChip(w){ [...$("chips").children].forEach(b=>b.classList.toggle("on", b.dataset.w===w)); }
+function saveList(){
+  wordList = parseList($("listInput").value);
+  $("listInput").value = wordList.join("\n");
+  try{ localStorage.setItem("spellList", JSON.stringify(wordList)); }catch(e){}
+  renderChips();
+}
+try{
+  const saved = JSON.parse(localStorage.getItem("spellList") || "[]");
+  if(Array.isArray(saved)) wordList = saved.filter(w=>typeof w==="string");
+}catch(e){}
+$("listInput").value = wordList.join("\n");
+$("listBox").open = !wordList.length;
+renderChips();
+
+$("spellBtn").addEventListener("click",()=>startSpell($("word").value));
+$("word").addEventListener("keydown",e=>{ if(e.key==="Enter") startSpell($("word").value); });
+$("saveList").addEventListener("click",saveList);
+$("spellAll").addEventListener("click",spellList);
+$("clearList").addEventListener("click",()=>{ $("listInput").value=""; saveList(); });
+
+$("play").addEventListener("click",()=>{
+  if(playing){ return; }
+  stopAll();
+  playing = true; $("play").textContent = "Đang phát…";
+  playFrom(0);
+});
+$("stop").addEventListener("click",stopAll);
+$("caseBtn").addEventListener("click",()=>{
+  showLower = !showLower;
+  $("caseBtn").textContent = showLower ? "Chỉ chữ hoa" : "Hiện cả chữ thường";
+  blocks.forEach((b,i)=>{ b.querySelector(".L").innerHTML = showLower ? `${LETTERS[i][0]}<small>${LETTERS[i][0].toLowerCase()}</small>` : LETTERS[i][0]; });
+  show(current);
+});
+$("rate").addEventListener("input",e=>$("rateOut").textContent = e.target.value+"×");
+$("gap").addEventListener("input",e=>$("gapOut").textContent = e.target.value+" giây");
+
+document.addEventListener("keydown",e=>{
+  if(["SELECT","INPUT","TEXTAREA"].includes(e.target.tagName)) return;
+  if(e.ctrlKey||e.metaKey||e.altKey) return;
+  const k = e.key.toUpperCase();
+  const i = LETTERS.findIndex(l=>l[0]===k);
+  if(i>=0){ stopAll(); speakIndex(i); blocks[i].focus(); }
+});
+
+// voices: prefer natural British ones
+const PREFER = ["Sonia","Libby","Ryan","Google UK English Female","Google UK English Male","Serena","Daniel","Kate","Arthur","Martha"];
+function loadVoices(){
+  if(!synth) return;
+  voices = synth.getVoices();
+  const gb = voices.filter(v=>/en[-_]GB/i.test(v.lang));
+  const sel = $("voice");
+  const prev = sel.value;
+  sel.innerHTML = "";
+  const list = gb.length ? gb : voices.filter(v=>/^en/i.test(v.lang));
+  const score = v => { const i = PREFER.findIndex(p=>v.name.includes(p)); return i<0?99:i; };
+  list.sort((a,b)=>score(a)-score(b)).forEach(v=>{
+    const o = document.createElement("option");
+    o.value = v.name; o.textContent = `${v.name} (${v.lang})`;
+    sel.appendChild(o);
+  });
+  if(prev && list.some(v=>v.name===prev)) sel.value = prev;
+  const w = $("warn");
+  if(!voices.length){ w.textContent = "Đang tải giọng đọc… Nếu không có tiếng, hãy thử mở trang bằng Chrome hoặc Edge."; w.classList.add("show"); }
+  else if(!gb.length){ w.textContent = "Máy này chưa có giọng Anh–Anh (en-GB), đang dùng giọng tiếng Anh khác. Hãy mở bằng Chrome/Edge, hoặc cài giọng English (UK) trong cài đặt ngôn ngữ của máy."; w.classList.add("show"); }
+  else w.classList.remove("show");
+}
+if(!synth){
+  $("warn").textContent = "Trình duyệt này không hỗ trợ đọc văn bản. Hãy mở bằng Chrome, Edge hoặc Safari.";
+  $("warn").classList.add("show");
+} else {
+  loadVoices();
+  synth.onvoiceschanged = loadVoices;
+  setTimeout(loadVoices, 800);
+}
+show(0);
+</script>
+</body>
+</html>
